@@ -5,14 +5,14 @@
 \title{Start a Mongoose Service
 Manuall start a local mongoose service}
 \usage{
-mongoose_start(port = 8000L, directory = getwd(), forward_to = NULL,
+mongoose_start(port = 8000L, path = getwd(), forward_to = NULL,
   ssl_cert = NULL, auth_domain = NULL, global_auth = NULL,
   directory_auth = NULL)
 }
 \arguments{
 \item{port}{service port number}
 
-\item{directory}{full path to data directory}
+\item{path}{full path to data directory}
 
 \item{forward_to}{forward 'not found' requests to another server}
 

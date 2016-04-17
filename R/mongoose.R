@@ -87,7 +87,7 @@ mongoose = function(uri, ...)
 #' Start a Mongoose Service
 #' Manuall start a local mongoose service
 #' @param port service port number
-#' @param directory full path to data directory
+#' @param path full path to data directory
 #' @param forward_to forward 'not found' requests to another server
 #' @param ssl_cert TLS/SSL certificate
 #' @param auth_domain HTTP digest authentication domain/realm
@@ -97,7 +97,7 @@ mongoose = function(uri, ...)
 #' @return Nothing; the mongoose server is started up as a background process.
 #' @export
 mongoose_start = function(port=8000L,
-                          directory=getwd(),
+                          path=getwd(),
                           forward_to=NULL,
                           ssl_cert=NULL,
                           auth_domain=NULL,
@@ -106,7 +106,7 @@ mongoose_start = function(port=8000L,
 {
   m = system.file("backends/mongoose/mongoose", package="feathercache")
   if(nchar(m) == 0) stop("mongoose not found!")
-  cmd = sprintf("%s -d %s", m, directory)
+  cmd = sprintf("%s -d %s", m, path)
   if(!is.null(forward_to)) cmd = sprintf("%s -f %s", cmd, forward_to)
   if(!is.null(ssl_cert)) cmd = sprintf("%s -s %s", cmd, ssl_cert)
   if(!is.null(auth_domain)) cmd = sprintf("%s -a %s", cmd, auth_domain)
