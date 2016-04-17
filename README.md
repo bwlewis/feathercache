@@ -27,14 +27,19 @@ We often see a need for as simply as possible sharing native R objects like
 data frames between R processes running across many computers. Many good
 options are of course available, including:
 
-* Networked file systems like NFS, perhaps the simplest option
-* Networked databases, including key/value stores and others
+* Networked file systems like NFS (perhaps the simplest option)
+* Networked databases including key/value stores
 
 But we wanted an approach that works out of the box without dependencies, nd
 could optionally work with some more sophisticated external systems without
 modification. We also wanted speed, multiple options for scalability,
 simplicity of a file system, and tailored for native R (or Python) objects
 because R and Python of course.
+
+We see our approach working well with lightweight distributed computing systems
+that are decoupled from I/O like R's `foreach` and `doRedis` packages
+(https://github.com/bwlewis/doRedis), and Python's amazing `celery` system
+(http://www.celeryproject.org/).
 
 ## Features
 
@@ -73,3 +78,33 @@ print(uncache(con, "mystuff"))        # list the contents of 'mystuff'
 head(uncache(con, "mystuff/iris"))    # retrieve iris from the cache
 mongoose_stop()
 ```
+
+## A bit more on the use case
+
+You might be thinking, why not just use Redis (http://redis.io) or whatever?
+Indeed Redis is pretty awesomely fast, well-supported across multiple operating
+systems, and has tons of features beyond simple GET/PUT. But Redis has some
+issues too, for example, values are limited in size. And if you want to just
+copy the "database" for offline analysis or backup, the values and keys are not
+simple files and need to be accessed through Redis itself. Those issues are
+typical of many databases. Mongodb (https://www.mongodb.org/), for instance, is
+also a superb document database.  But its values are limited in size too, and
+it's geared to working with structured values in JSON form, not arbitrary
+serialized R objects.
+
+Apache Geode (http://geode.incubator.apache.org/) is super fast, has very
+large value size limits (terabytes), and provides very strong consistency
+in distributed settings to boot. Not bad! But it's a huge software project
+with a gigantic footprint that needs to be installed and maintained on a
+cluster. Which is fine if that's what you're already using, but might be
+a pain if you just want a fast way to share data across a bunch of R and
+Python processes.
+
+Finally, very traditional networked databases like PostgreSQL and MySQL can
+store binary blobs and be used just like this, while also providing added
+transactional and consistency protections on the data. I seriously considered
+using PostgreSQL for this project in fact, and indeed it still could be
+outfitted as another modular back end. But I found the object store path
+compelling because of the potential scalability/performance potential of
+`minio` with their "XL" erasure-coded back end, and of course the proven
+scalability of S3 (at least if you're running in Amazon's ecosystem).
