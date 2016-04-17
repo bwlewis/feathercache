@@ -30,11 +30,11 @@ options are of course available, including:
 * Networked file systems like NFS, perhaps the simplest option
 * Networked databases, including key/value stores and others
 
-But we wanted an approach that works out of the box without dependencies, but
+But we wanted an approach that works out of the box without dependencies, nd
 could optionally work with some more sophisticated external systems without
-modification. We also wanted a system that is fast, reasonably scalable, simple
-like a file system, and tailored for native R (or Python) objects because R and
-Python of course.
+modification. We also wanted speed, multiple options for scalability,
+simplicity of a file system, and tailored for native R (or Python) objects
+because R and Python of course.
 
 ## Features
 
@@ -53,6 +53,12 @@ and JSON directory listings.
 Mongoose runs out of the box on all operating system platforms with zero to
 minimal configuration, or optionally can be installed as a system service.
 
+Data stored by mongoose are relative to a user-configurable data directory and
+are stored in plain old files that can be read directly without the object
+storage service.
+
+Mongoose data files and directories are directly compatible with `minio` data
+and can be used interchangeably with that service when it's ready.
 
 ## Quickstart (R)
 
