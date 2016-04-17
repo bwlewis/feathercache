@@ -34,12 +34,21 @@ But we wanted an approach that works out of the box without dependencies, nd
 could optionally work with some more sophisticated external systems without
 modification. We also wanted speed, multiple options for scalability,
 simplicity of a file system, and tailored for native R (or Python) objects
-because R and Python of course.
+because R and Python of course. _And most important, we want to work with data
+in native R or Python form to minimize or eliminate data marshaling cost._
 
 We see our approach working well with lightweight distributed computing systems
 that are decoupled from I/O like R's `foreach` and `doRedis` packages
 (https://github.com/bwlewis/doRedis), and Python's amazing `celery` system
 (http://www.celeryproject.org/).
+
+## Anti use case
+
+Feathercache is *not* a database. Right now, no claims to data consistency are
+made and a lot of things are left up to the clients (R, whatever). Think of it
+as a networked file system service like S3. We plan to put in basic locking and
+optional data synchronization guarantees very soon, but it's still not a
+database. Use a database if you think you need a database.
 
 ## Features
 
