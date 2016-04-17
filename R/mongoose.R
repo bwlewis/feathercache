@@ -1,4 +1,5 @@
 #' Mongoose Object Store Backend
+#'
 #' Specify connection details for a \code{mongoose} web service object store backend,
 #' the default simple back end included in the \code{feathercache} package.
 #' @param uri The serivce uri, for instance \code{http://localhost:8000}.

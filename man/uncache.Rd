@@ -2,10 +2,7 @@
 % Please edit documentation in R/io.R
 \name{uncache}
 \alias{uncache}
-\title{Retrieve a Value from an Object Store
-Retrieve a value corresponding to the specified \code{key} from the object store service
-connection \code{con}. If \code{key} corresponds to a directory, then a data frame listing
-the directory contents is returned.}
+\title{Retrieve a Value from an Object Store}
 \usage{
 uncache(con, key)
 }
@@ -19,10 +16,21 @@ Either a data frame directory listing in \code{key} corresponds to a directory,
 or an R value corresponding to \code{key}.
 }
 \description{
-Retrieve a Value from an Object Store
 Retrieve a value corresponding to the specified \code{key} from the object store service
 connection \code{con}. If \code{key} corresponds to a directory, then a data frame listing
 the directory contents is returned.
+}
+\examples{
+# Start an example local mongoose backend server
+mongoose_start()
+con <- register_service()
+# Cache the 'iris' dataset in a directory named 'mydata':
+cache(con, iris, "mydata/iris")
+# Retrieve it from the cache into a new variable called 'x'
+x <- uncache(con, "mydata/iris")
+# Delete the entire 'mydata' directory
+delete(con, "mydata")
+mongoose_stop()
 }
 \seealso{
 \code{\link{register_service}} \code{\link{cache}} \code{\link{delete}}

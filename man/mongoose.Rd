@@ -2,9 +2,7 @@
 % Please edit documentation in R/mongoose.R
 \name{mongoose}
 \alias{mongoose}
-\title{Mongoose Object Store Backend
-Specify connection details for a \code{mongoose} web service object store backend,
-the default simple back end included in the \code{feathercache} package.}
+\title{Mongoose Object Store Backend}
 \usage{
 mongoose(uri, ...)
 }
@@ -22,7 +20,6 @@ mongoose(uri, ...)
 }}
 }
 \description{
-Mongoose Object Store Backend
 Specify connection details for a \code{mongoose} web service object store backend,
 the default simple back end included in the \code{feathercache} package.
 }

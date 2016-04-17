@@ -6,6 +6,7 @@ urlEncodePath = function (x)
 }
 
 #' Create or Update a Digest Authentication File
+#'
 #' Use this function to create or edit 'htdigest'-style HTTP digest authentication
 #' files for the \code{\link{mongoose}} back end. Depending on the authentication
 #' settings (global or per-directory), you may use just one global file or a file
@@ -15,6 +16,7 @@ urlEncodePath = function (x)
 #' @param user User name.
 #' @param password User password.
 #' @return Invoked for the side effect of creating or updating \code{file}.
+#' @note See \url{https://httpd.apache.org/docs/current/programs/htdigest.html}.
 #' @export
 htdigest = function(file, realm, user, password)
 {

@@ -2,9 +2,7 @@
 % Please edit documentation in R/io.R
 \name{delete}
 \alias{delete}
-\title{Deleta a Value or Directory from an Object Store
-Delete the value or directory corresponding to the specified \code{key} from the object store service
-connection \code{con}.}
+\title{Deleta a Value or Directory from an Object Store}
 \usage{
 delete(con, key)
 }
@@ -17,9 +15,20 @@ delete(con, key)
 \code{NULL} is invisibly returned, or an error may be thrown.
 }
 \description{
-Deleta a Value or Directory from an Object Store
 Delete the value or directory corresponding to the specified \code{key} from the object store service
 connection \code{con}.
+}
+\examples{
+# Start an example local mongoose backend server
+mongoose_start()
+con <- register_service()
+# Cache the 'iris' dataset in a directory named 'mydata':
+cache(con, iris, "mydata/iris")
+# Retrieve it from the cache into a new variable called 'x'
+x <- uncache(con, "mydata/iris")
+# Delete the entire 'mydata' directory
+delete(con, "mydata")
+mongoose_stop()
 }
 \seealso{
 \code{\link{register_service}} \code{\link{cache}} \code{\link{uncache}}

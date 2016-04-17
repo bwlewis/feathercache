@@ -2,9 +2,7 @@
 % Please edit documentation in R/io.R
 \name{cache}
 \alias{cache}
-\title{Upload an R Value to an Object Store
-Upload the R \code{value} to the object store connection \code{con} with the key name and
-optional path specified by \code{key}.}
+\title{Upload an R Value to an Object Store}
 \usage{
 cache(con, value, key)
 }
@@ -19,7 +17,6 @@ cache(con, value, key)
 A character string corresponding to the url of the uploaded object.
 }
 \description{
-Upload an R Value to an Object Store
 Upload the R \code{value} to the object store connection \code{con} with the key name and
 optional path specified by \code{key}.
 }
@@ -27,6 +24,18 @@ optional path specified by \code{key}.
 Key names are url-encoded and may be changed (see the returned value for the url of the
 stored value). The forward slash character \code{/} is NOT url-encoded and reserved for directory
 path information.
+}
+\examples{
+# Start an example local mongoose backend server
+mongoose_start()
+con <- register_service()
+# Cache the 'iris' dataset in a directory named 'mydata':
+cache(con, iris, "mydata/iris")
+# Retrieve it from the cache into a new variable called 'x'
+x <- uncache(con, "mydata/iris")
+# Delete the entire 'mydata' directory
+delete(con, "mydata")
+mongoose_stop()
 }
 \seealso{
 \code{\link{register_service}} \code{\link{uncache}} \code{\link{delete}}

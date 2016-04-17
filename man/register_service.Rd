@@ -2,9 +2,7 @@
 % Please edit documentation in R/io.R
 \name{register_service}
 \alias{register_service}
-\title{Register an Object Store Service
-Register an object store service backend, including backend-specific options
-like authentication, encryption, and compression.}
+\title{Register an Object Store Service}
 \usage{
 register_service(uri = "http://localhost:8000", backend = mongoose, ...)
 }
@@ -20,7 +18,6 @@ backends like \code{minio} and {s3}.}
 A uri corresponding to the cached value.
 }
 \description{
-Register an Object Store Service
 Register an object store service backend, including backend-specific options
 like authentication, encryption, and compression.
 }
