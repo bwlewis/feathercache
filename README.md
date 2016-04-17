@@ -1,15 +1,25 @@
 # feathercache
 
-A stupid simple networked object store for R (and Python). We're calling this
-*feather*cache because someday we plan on caching feather
-(https://github.com/wesm/feather) objects in it for use with R, Python, and
-other languages. For now it's just a really simple, generic, networked binary
-object store.
+A stupid simple networked object store for R (and Python), delivered as an R
+package for now. We're calling this *feather*cache because someday we plan on
+caching feather (https://github.com/wesm/feather) objects in it for use with R,
+Python, and other languages. For now it's just a really simple, generic,
+networked binary object store.
 
 Feathercache supports GET/PUT/DELETE-style operations using modular back end
 storage services.  Out of the box support is provided by the included
 `mongoose` web service, but we also plan to support `minio` (https://minio.io)
 and Amazon S3 object storage services.
+
+
+## Installation (R)
+
+You'll need the `devtools` package, for instance from `install.packages("devtools")`.
+
+```{r}
+devtools::install_github("bwlewis/lz4")           # required dependency for now
+devtools::install_github("bwlewis/feathercache")
+```
 
 ## Use case
 
@@ -28,7 +38,7 @@ Python of course.
 
 ## Features
 
-* Cross-platform, works on Windows, Mac OS X and Linux systems.
+* Eventually plan to be cross-platform for Windows, Mac OS X and Linux systems, right now testing/developing on Linux.
 * Simple, standard GET/PUT/DELETE-style operations
 * Modular storage back ends: `mongoose` (default), `minio`, S3, Azure blob (someday?), ...
 
@@ -44,3 +54,16 @@ Mongoose runs out of the box on all operating system platforms with zero to
 minimal configuration, or optionally can be installed as a system service.
 
 
+## Quickstart (R)
+
+```{r}
+library(feathercache)
+mongoose_start()                      # starts a local mongoose server on port 8000
+con <- register_service()             # register the local mongoose
+cache(con, iris, key="mystuff/iris")  # put a copy of iris in the 'mystuff' directory
+cache(con, cars, key="mystuff/cars")  # put a copy of cars in the 'mystuff' directory
+
+print(uncache(con, "mystuff"))        # list the contents of 'mystuff'
+head(uncache(con, "mystuff/iris"))    # retrieve iris from the cache
+mongoose_stop()
+```
