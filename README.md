@@ -17,7 +17,7 @@ and Amazon S3 object storage services.
 You'll need the `devtools` package, for instance from `install.packages("devtools")`.
 
 ```{r}
-devtools::install_github("bwlewis/lz4")           # required dependency for now
+devtools::install_github("bwlewis/lz4")   # required dependency for now
 devtools::install_github("bwlewis/feathercache")
 ```
 
@@ -30,11 +30,11 @@ options are of course available, including:
 * Networked file systems like NFS (perhaps the simplest option)
 * Networked databases including key/value stores
 
-But we wanted an approach that works out of the box without dependencies, nd
+But we wanted an approach that works out of the box without dependencies, and
 could optionally work with some more sophisticated external systems without
 modification. We also wanted speed, multiple options for scalability,
-simplicity of a file system, and tailored for native R (or Python) objects
-because R and Python of course. _And most important, we want to work with data
+the simplicity of a file system, 
+_and most important, we want to work with data
 in native R or Python form to minimize or eliminate data marshaling cost._
 
 We see our approach working well with lightweight distributed computing systems
