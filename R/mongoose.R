@@ -9,19 +9,30 @@
 #'   \item{ssl_verifyhost}{Optional SSL/TLS host verification, defaults to 0 (no verification)}
 #'   \item{ssl_verifypeer}{Optional SSL/TLS peer verification, defaults to 0 (no verification)}
 #'   \item{redirect_limit}{Should be set to the mongoose cluster size, defaults to 3}
+#'   \item{compression}{Either 'lz4', 'xz', 'gzip' or 'none'.}
 #' }
+#' @note The mongoose back end stores R values in compressed (unless compression='none'), serialized form.
 #' @export
 mongoose = function(uri, ...)
 {
   base = uri
   opts = list(...)
 
-  getfun = function(x) unserialize(lz4::lzDecompress(x))
-  putfun = function(x) lz4::lzCompress(serialize(x, NULL))
-
+  if(is.null(opts$compression)) opts$compression = "lz4"
   if(is.null(opts$ssl_verifyhost)) opts$ssl_verifyhost = 0
   if(is.null(opts$ssl_verifypeer)) opts$ssl_verifypeer = 0
   if(is.null(opts$redirect_limit)) opts$redirect_limit = 3
+
+  getfun = switch(opts$compression,
+             lz4=function(x) unserialize(lz4::lzDecompress(x)),
+             gzip=function(x) unserialize(memDecompress(x, type="gzip")),
+             xz=function(x) unserialize(memDecompress(x, type="xz")),
+             function(x) unserialize(x))
+  putfun = switch(opts$compression,
+             lz4=function(x) lz4::lzCompress(serialize(x, NULL)),
+             gzip=function(x) memCompress(serialize(x, NULL), type="gzip"),
+             xz=function(x) memCompress(serialize(x, NULL), type="xz"),
+             function(x) serialize(x, NULL))
 
   function(proto, ...)
   {
