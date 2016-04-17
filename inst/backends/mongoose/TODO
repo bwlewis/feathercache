@@ -1,0 +1,2 @@
+- Add basic file locking to PUT and DELETE
+- Add ?sync query variable option to PUT

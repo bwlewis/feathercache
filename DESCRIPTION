@@ -1,0 +1,18 @@
+Package: feathercache
+Type: Package
+Title: Simple networked object cache
+Version: 0.0.1
+Date: 2016-04-11
+Description: Networked object cache for general R and feather objects.
+Authors@R: c(
+    person("B. W.", "Lewis", role=c("aut","cre"), email="blewis@illposed.net")
+    )
+URL: http://bwlewis.github.io/feathercache
+License: GPL
+BugReports: https://github.com/bwlewis/feathercache/issues
+Imports:
+    curl,
+    utils,
+    jsonlite,
+    lz4
+RoxygenNote: 5.0.0
