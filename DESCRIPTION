@@ -13,6 +13,7 @@ BugReports: https://github.com/bwlewis/feathercache/issues
 Imports:
     curl,
     utils,
+    digest,
     jsonlite,
     lz4
 RoxygenNote: 5.0.0
