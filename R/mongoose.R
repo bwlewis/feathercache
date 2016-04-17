@@ -12,6 +12,7 @@
 #'   \item{compression}{Either 'lz4', 'xz', 'gzip' or 'none'.}
 #' }
 #' @note The mongoose back end stores R values in compressed (unless compression='none'), serialized form.
+#' Default compression is lz4; change using the \code{compression} option.
 #' @export
 mongoose = function(uri, ...)
 {

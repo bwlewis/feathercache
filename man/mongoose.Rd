@@ -17,11 +17,17 @@ mongoose(uri, ...)
   \item{password}{Optional HTTP digest authentication user password}
   \item{ssl_verifyhost}{Optional SSL/TLS host verification, defaults to 0 (no verification)}
   \item{ssl_verifypeer}{Optional SSL/TLS peer verification, defaults to 0 (no verification)}
+  \item{redirect_limit}{Should be set to the mongoose cluster size, defaults to 3}
+  \item{compression}{Either 'lz4', 'xz', 'gzip' or 'none'.}
 }}
 }
 \description{
 Mongoose Object Store Backend
 Specify connection details for a \code{mongoose} web service object store backend,
 the default simple back end included in the \code{feathercache} package.
+}
+\note{
+The mongoose back end stores R values in compressed (unless compression='none'), serialized form.
+Default compression is lz4; change using the \code{compression} option.
 }
 
