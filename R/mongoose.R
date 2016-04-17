@@ -106,7 +106,7 @@ mongoose_start = function(port=8000L,
 {
   m = system.file("backends/mongoose/mongoose", package="feathercache")
   if(nchar(m) == 0) stop("mongoose not found!")
-  cmd = sprintf("%s -d %s", m, path)
+  cmd = sprintf("%s -l 0 -d %s", m, path)
   if(!is.null(forward_to)) cmd = sprintf("%s -f %s", cmd, forward_to)
   if(!is.null(ssl_cert)) cmd = sprintf("%s -s %s", cmd, ssl_cert)
   if(!is.null(auth_domain)) cmd = sprintf("%s -a %s", cmd, auth_domain)

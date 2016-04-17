@@ -10995,7 +10995,7 @@ main (int argc, char **argv)
 
   mg_set_protocol_http_websocket (nc);
   cs_log_set_level(loglevel);
-  printf ("Starting web server on port %s\n", s_http_port);
+  LOG(LL_ERROR, ("Starting web server on port %s", s_http_port));
   for (;;)
     {
       mg_mgr_poll (&mgr, 1000);

@@ -104,4 +104,5 @@ cache = function(con, value, key)
 delete = function(con, key)
 {
   con("delete", key=key)
+  invisible()
 }

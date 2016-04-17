@@ -11,15 +11,15 @@ CFLAGS = -g -W -Wall -I../.. -Wno-unused-function $(CFLAGS_EXTRA) $(MODULE_CFLAG
 all: $(PROG)
 
 ifeq ($(OS), Windows_NT)
-CFLAGS += -lws2_32
+CFLAGS := $(CFLAGS) -lws2_32
 CC = gcc
 else
 ifeq ($(SSL_LIB),openssl)
-CFLAGS += -DMG_ENABLE_SSL -lssl -lcrypto
+CFLAGS := $(CFLAGS) -DMG_ENABLE_SSL -lssl -lcrypto
 else ifeq ($(SSL_LIB), krypton)
-CFLAGS += -DMG_ENABLE_SSL -DMG_DISABLE_PFS ../../../krypton/krypton.c
+CFLAGS := $(CFLAGS) -DMG_ENABLE_SSL -DMG_DISABLE_PFS ../../../krypton/krypton.c
 endif
-CFLAGS += -lpthread
+CFLAGS := $(CFLAGS) -lpthread
 endif
 
 all: $(SOURCES)
