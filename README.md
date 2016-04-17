@@ -61,7 +61,7 @@ database. Use a database if you think you need a database.
 
 The package includes a back end based on Cesanta's excellent `mongoose` web
 server (https://github.com/cesanta/mongoose) with TLS encryption, digest
-authentication, optional auto-forwarded requests between servers in cluster,
+authentication, optional auto-forwarded requests between servers in a cluster,
 and JSON directory listings.
 
 Mongoose runs out of the box on all operating system platforms with zero to
