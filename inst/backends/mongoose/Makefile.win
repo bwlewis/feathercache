@@ -1,0 +1,19 @@
+# mongoose for Windows compilation:
+# make -f Makefile.win
+# With TLS/SSL enabled:
+# SSL_LIB=openssl make
+
+MODULE_CFLAGS=-DMG_DISABLE_CGI -DMG_DISABLE_DAV_AUTH -DMG_ENABLE_FAKE_DAVLOCK -DCS_ENABLE_DEBUG
+
+SOURCES = mongoose.c
+CFLAGS = -g -W -Wall -I../.. -Wno-unused-function $(CFLAGS_EXTRA) $(MODULE_CFLAGS)
+
+CFLAGS := $(CFLAGS) -lws2_32
+CC = gcc
+
+all: $(SOURCES)
+	$(CC) $(SOURCES) -o mongoose.exe $(CFLAGS)
+#	cl $(SOURCES) /I../.. /MD /Fe$@
+
+clean:
+	rm -rf *.gc* *.dSYM *.exe *.obj *.o a.out mongoose

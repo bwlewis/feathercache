@@ -1,0 +1,7 @@
+.PHONY: all mylibs
+
+all: $(SHLIB)
+$(SHLIB): mylibs
+
+mylibs:
+	(cd ../inst/backends/mongoose; SSL_LIBS=openssl make -f Makefile.win)
