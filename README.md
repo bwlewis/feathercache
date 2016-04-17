@@ -96,10 +96,12 @@ systems, and has tons of features beyond simple GET/PUT. But Redis has some
 issues too, for example, values are limited in size. And if you want to just
 copy the "database" for offline analysis or backup, the values and keys are not
 simple files and need to be accessed through Redis itself. Those issues are
-typical of many databases. Mongodb (https://www.mongodb.org/), for instance, is
-also a superb document database.  But its values are limited in size too, and
-it's geared to working with structured values in JSON form, not arbitrary
-serialized R objects.
+typical of many databases. Mongodb (https://www.mongodb.org/) and RethinkDB
+(http://rethinkdb.com/), for instance, are superb document databases.  But
+values are also limited in size, although GridFS (https://docs.mongodb.org/manual/core/gridfs/)
+is an option but that brings additional configuration complexity,
+and they're geared to working with structured
+values in JSON form, not arbitrary serialized R objects.
 
 Apache Geode (http://geode.incubator.apache.org/) is super fast, has very
 large value size limits (terabytes), and provides very strong consistency
