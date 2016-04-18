@@ -10995,6 +10995,7 @@ main (int argc, char **argv)
 #endif
 
   mg_set_protocol_http_websocket (nc);
+  nc->flags = nc->flags || MG_F_DELETE_CHUNK;
   cs_log_set_level(loglevel);
   LOG(LL_ERROR, ("Starting web server on port %s", s_http_port));
   for (;;)
