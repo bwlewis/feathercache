@@ -10897,7 +10897,8 @@ ev_handler (struct mg_connection *nc, int ev, void *p)
   struct http_message *hm = (struct http_message *)p;
   if (ev == MG_EV_HTTP_REQUEST)
     {
-      LOG(LL_INFO, ("request %.*s from %s", (int)hm->uri.len, hm->uri.p, inet_ntoa(nc->sa.sin.sin_addr)));
+      LOG(LL_INFO, ("%.*s %.*s from %s", (int)hm->method.len, hm->method.p,
+        (int)hm->uri.len, hm->uri.p, inet_ntoa(nc->sa.sin.sin_addr)));
       mg_serve_http (nc, (struct http_message *) p, s_http_server_opts);
     }
 }
