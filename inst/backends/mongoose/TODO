@@ -1,3 +1,3 @@
 - Add basic file locking to PUT and DELETE
 - Add ?sync query variable option to PUT
-- service and package installation and scripts
+- service and package installation and scripts (all operating systems)

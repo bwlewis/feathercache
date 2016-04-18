@@ -120,3 +120,16 @@ outfitted as another modular back end. But I found the object store path
 compelling because of the potential scalability/performance potential of
 `minio` with their "XL" erasure-coded back end, and of course the proven
 scalability of S3 (at least if you're running in Amazon's ecosystem).
+
+# More documentation:
+
+## Mongoose back end
+See https://github.com/bwlewis/feathercache/blob/master/inst/backends/mongoose/README.md
+for details on compiling and installing the `mongoose` back end as a system
+service.
+
+## minio back end
+Not ready yet!
+
+## Amazon S3 back end
+Not ready yet!

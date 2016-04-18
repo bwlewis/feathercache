@@ -74,16 +74,31 @@ its location. Not terribly efficient, but reasonably effective.
 
 ## Installation as a system service (Linux)
 
-The package includes scripts and makefiles that can build an OS-specific
-installable mongoose package for Debian/Ubuntu and RHEL/CentOS operating
-systems. A service version of mongoose can then be installed from the
-package (and easily removed later if you like, thus the package format).
-
-
-
-### Ubuntu
+The package includes scripts that can install mongoose as a service. First,
+install the R package then run (assuming R is in your PATH):
 
 ```
-sudo apt-get install ruby-dev
-sudo gem install fpm
+sudo $(R --slave -e "cat(system.file('backends/mongoose/service_linux/mongoose-installer.sh', package='feathercache'))")
+```
+The script installs the files:
+
+* `/usr/local/bin/mongoose`
+* `/etc/init.d/mongoose`
+* `/etc/mongoose.conf`
+
+You'll almost certainly want to examine and possible edit (as the root user) the
+`/etc/mongoose.conf` file; this file controls all the mongoose options like the
+object storage path and importantly which user the mongoose server runs as
+(`nobody` by default).
+
+If you do edit the `/etc/mongoose.conf` file, then restart the service for your
+changes to take effect:
+```
+/etc/init.d/mongoose stop
+/etc/init.d/mongoose start
+```
+
+Un-install the service with
+```
+sudo $(R --slave -e "cat(system.file('backends/mongoose/service_linux/mongoose-uninstaller.sh', package='feathercache'))")
 ```
