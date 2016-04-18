@@ -32,6 +32,7 @@ cache(con, cars, key="mystuff/cars")  # put a copy of cars in the 'mystuff' dire
 
 print(uncache(con, "mystuff"))        # list the contents of 'mystuff'
 head(uncache(con, "mystuff/iris"))    # retrieve iris from the cache
+delete(con, "mystuff")                # delete the whole 'mystuff' directory
 mongoose_stop()
 ```
 
