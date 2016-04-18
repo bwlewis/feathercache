@@ -52,8 +52,8 @@ _and most important, we want to work with data
 in native R or Python form to minimize or eliminate data marshaling cost._
 
 We see our approach working well with lightweight distributed computing systems
-that are decoupled from I/O like R's `foreach` and `doRedis` packages
-(https://github.com/bwlewis/doRedis), and Python's amazing `celery` system
+that are decoupled from I/O like R's foreach and doRedis packages
+(https://github.com/bwlewis/doRedis), and Python's superb celery system
 (http://www.celeryproject.org/).
 
 ## Anti use case
@@ -66,14 +66,14 @@ database. Use a database if you think you need a database.
 
 ## Features
 
-* Eventually plan to be cross-platform for Windows, Mac OS X and Linux systems, right now testing/developing on Linux.
-* Simple, standard GET/PUT/DELETE-style operations
-* Modular storage back ends: `mongoose` (default), `minio`, S3, Azure blob (someday?), ...
+* Planning to be cross-platform for Windows, Mac OS X and Linux systems, right now testing/developing on Linux.
+* Simple standard GET/PUT/DELETE-style operations
+* Modular storage back ends: mongoose (default), minio, Amazon S3, Azure blob (someday?), ...
 
 
 ## Mongoose back end
 
-The package includes a back end based on Cesanta's excellent `mongoose` web
+The package includes a back end based on Cesanta's excellent mongoose web
 server (https://github.com/cesanta/mongoose) with TLS encryption, digest
 authentication, optional auto-forwarded requests between servers in a cluster,
 and JSON directory listings.
@@ -82,10 +82,10 @@ Mongoose runs out of the box on all operating system platforms with zero to
 minimal configuration, or optionally can be installed as a system service.
 
 Data stored by mongoose are relative to a user-configurable data directory and
-are stored in plain old files that can be read directly without the object
-storage service.
+are stored in plain old files that can be read directly (without the networked
+object storage service).
 
-Mongoose data files and directories are directly compatible with `minio` data
+Mongoose data files and directories are directly compatible with minio data
 and can be used interchangeably with that service when it's ready.
 
 
