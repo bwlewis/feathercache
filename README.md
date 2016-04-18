@@ -124,8 +124,14 @@ scalability of S3 (at least if you're running in Amazon's ecosystem).
 # More documentation:
 
 ## Mongoose back end
+
+The package includes a basic HTTP/S object store service based on the
+Cesanta `mongoose` web server (https://github.com/cesanta/mongoose). The
+service is compiled with the R package and ready to run out of the box
+(at least, for now, on Linux -- other operatings systems soon).
+
 See https://github.com/bwlewis/feathercache/blob/master/inst/backends/mongoose/README.md
-for details on compiling and installing the `mongoose` back end as a system
+for more information and details on installing the `mongoose` back end as a system
 service.
 
 ## minio back end
