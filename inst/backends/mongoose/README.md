@@ -70,3 +70,20 @@ errors are returned to the client as redirects to the next server.
 This simple approach lets you store key/values across several servers using any
 desired sharding strategy and locate a given key without advance knowledge of
 its location. Not terribly efficient, but reasonably effective.
+
+
+## Installation as a system service (Linux)
+
+The package includes scripts and makefiles that can build an OS-specific
+installable mongoose package for Debian/Ubuntu and RHEL/CentOS operating
+systems. A service version of mongoose can then be installed from the
+package (and easily removed later if you like, thus the package format).
+
+
+
+### Ubuntu
+
+```
+sudo apt-get install ruby-dev
+sudo gem install fpm
+```

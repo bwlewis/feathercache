@@ -8,4 +8,4 @@ all:
 	$(CC) mongoose.c -o mongoose $(CFLAGS)
 
 clean:
-	rm -rf *.gc* *.dSYM *.exe *.obj *.o a.out mongoose
+	rm -rf *.gc* *.dSYM *.exe *.obj *.o a.out mongoose *.deb *.rpm

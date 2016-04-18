@@ -21,6 +21,20 @@ devtools::install_github("bwlewis/lz4")   # required dependency for now
 devtools::install_github("bwlewis/feathercache")
 ```
 
+## Quickstart (R)
+
+```{r}
+library(feathercache)
+mongoose_start()                      # starts a local mongoose server on port 8000
+con <- register_service()             # register the local mongoose
+cache(con, iris, key="mystuff/iris")  # put a copy of iris in the 'mystuff' directory
+cache(con, cars, key="mystuff/cars")  # put a copy of cars in the 'mystuff' directory
+
+print(uncache(con, "mystuff"))        # list the contents of 'mystuff'
+head(uncache(con, "mystuff/iris"))    # retrieve iris from the cache
+mongoose_stop()
+```
+
 ## Use case
 
 We often see a need for as simply as possible sharing native R objects like
@@ -74,19 +88,6 @@ storage service.
 Mongoose data files and directories are directly compatible with `minio` data
 and can be used interchangeably with that service when it's ready.
 
-## Quickstart (R)
-
-```{r}
-library(feathercache)
-mongoose_start()                      # starts a local mongoose server on port 8000
-con <- register_service()             # register the local mongoose
-cache(con, iris, key="mystuff/iris")  # put a copy of iris in the 'mystuff' directory
-cache(con, cars, key="mystuff/cars")  # put a copy of cars in the 'mystuff' directory
-
-print(uncache(con, "mystuff"))        # list the contents of 'mystuff'
-head(uncache(con, "mystuff/iris"))    # retrieve iris from the cache
-mongoose_stop()
-```
 
 ## A bit more on the use case
 
