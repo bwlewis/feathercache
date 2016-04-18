@@ -131,7 +131,7 @@ service is compiled with the R package and ready to run out of the box
 (at least, for now, on Linux -- other operatings systems soon).
 
 See https://github.com/bwlewis/feathercache/blob/master/inst/backends/mongoose/README.md
-for more information and details on installing the `mongoose` back end as a system
+for more information and details on installing the mongoose back end as a system
 service.
 
 ## minio back end
