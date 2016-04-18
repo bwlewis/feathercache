@@ -37,7 +37,7 @@ mongoose_stop()
 
 ## Use case
 
-We often see a need for as simply as possible sharing native R objects like
+We often see a need for, as simply as possible, sharing native R values like
 data frames between R processes running across many computers. Many good
 options are of course available, including:
 
