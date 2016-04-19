@@ -7,7 +7,8 @@ Python, and other languages. For now it's just a really simple, generic,
 networked binary object store.
 
 Feathercache supports GET/PUT/DELETE-style operations using modular back end
-storage services.  Out of the box support is provided by the included
+storage services. Our R package calls them `cache()`, `uncache()`, and
+`delete()`.  Out of the box support is provided by the included
 `mongoose` web service, but we also plan to support `minio` (https://minio.io)
 and Amazon S3 object storage services.
 
