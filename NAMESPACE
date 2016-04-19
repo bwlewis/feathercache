@@ -3,6 +3,7 @@
 export(cache)
 export(delete)
 export(htdigest)
+export(info)
 export(mongoose)
 export(mongoose_start)
 export(mongoose_stop)

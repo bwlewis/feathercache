@@ -108,3 +108,33 @@ delete = function(con, key)
   con("delete", key=key)
   invisible()
 }
+
+#' Retrieve Metadata from an Object Store
+#'
+#' Retrieve metadata like last modified time and size corresponding to the specified \code{key} from the object store service
+#' connection \code{con}. If \code{key} corresponds to a directory, then a data frame listing
+#' the directory contents is returned.
+#' @param con An object store connection from \code{\link{register_service}}.
+#' @param key A key name, optionally including a \code{/} separated directory path.
+#' @return Either a data frame directory listing when \code{key} corresponds to a directory,
+#' or an R list of headers and their values corresponding to \code{key}.
+#' @note Corresponds to the HTTP \code{HEAD} operations. Directory entries in the data frame directory listing output are identified by \code{size=NA}.
+#' @seealso \code{\link{register_service}} \code{\link{uncache}} \code{\link{delete}}
+#' @examples
+#' # Start an example local mongoose backend server
+#' mongoose_start()
+#' con <- register_service()
+#' # Cache the 'iris' dataset in a directory named 'mydata':
+#' cache(con, iris, "mydata/iris")
+#' # Print some info about it
+#' info(con, "mydata/iris")
+#' # Retrieve it from the cache into a new variable called 'x'
+#' x <- uncache(con, "mydata/iris")
+#' # Delete the entire 'mydata' directory
+#' delete(con, "mydata")
+#' mongoose_stop()
+#' @export
+info = function(con, key="")
+{
+  con("head", key=key)
+}

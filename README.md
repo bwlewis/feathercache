@@ -128,6 +128,7 @@ scalability of S3 (at least if you're running in Amazon's ecosystem).
 # More documentation:
 
 ## Mongoose back end
+https://github.com/bwlewis/feathercache/blob/master/inst/backends/mongoose/README.md
 
 The package includes a basic HTTP/S object store service based on the
 Cesanta mongoose web server (https://github.com/cesanta/mongoose). The

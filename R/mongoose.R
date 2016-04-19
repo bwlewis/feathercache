@@ -58,6 +58,18 @@ mongoose = function(uri, ...)
       resp = curl::curl_fetch_memory(url, handle=h)
       if(resp$status_code > 299) stop("HTTP error ", resp$status_code)
       return(gsub(sprintf("%s/", base), "", resp$url))
+    } else if(proto == "head")
+    {
+      curl::handle_setopt(h, .list = list(customrequest = "HEAD", nobody=TRUE))
+      resp = curl::curl_fetch_memory(url, handle=h)
+      if(resp$status_code > 299) stop("HTTP error ", resp$status_code)
+      hdr = rawToChar(resp$headers)
+      hdr = strsplit(hdr, "\r\n")[[1]][-1]
+      hdr = hdr[nchar(hdr) > 0]
+      n   = gsub(":.*", "", hdr)
+      ans = unlist(Map(function(i) gsub(sprintf("^%s: ", n[i]), "", hdr[i]), 1:length(n)))
+      names(ans) = n
+      return(ans)
     } else if(proto == "get")
     {
       resp = curl::curl_fetch_memory(url, handle=h)
