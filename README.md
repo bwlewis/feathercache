@@ -11,7 +11,7 @@ storage services. Our R package calls those operations `cache()`, `uncache()`,
 and `delete()`.
 
 Out of the box support is provided by the included `mongoose` web service, but
-we also plan to support `minio` (https://minio.io) and Amazon S3 object storage
+we also plan to support minio (https://minio.io) and Amazon S3 object storage
 services.
 
 ## Status
@@ -127,7 +127,7 @@ transactional and consistency protections on the data. I seriously considered
 using PostgreSQL for this project in fact, and indeed it still could be
 outfitted as another modular back end. But I found the object store path
 compelling because of the potential scalability/performance potential of
-`minio` with their "XL" erasure-coded back end, and of course the proven
+minio with their "XL" erasure-coded back end, and of course the proven
 scalability of S3 (at least if you're running in Amazon's ecosystem).
 
 # More documentation:
