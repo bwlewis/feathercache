@@ -101,7 +101,7 @@ Directories without an access file are globally accessible, unless a global
 authentication file is set. If both a global access file and a per-directory
 access file are specified, the global file takes precedence.
 
-## Data redirect
+## Auto redirect
 
 Nifty!
 
@@ -122,14 +122,14 @@ of storage location. This approach introduces latency for the sake of extreme
 simplicity.
 
 
-### A trivial example on a single server
+### A redirect example on a single server
 
 The example below starts two mongoose services running on different ports on
 the same machine and serving data out of different paths to sort of emulate
 running on different machines.
 
 The example caches R objects on each service and then shows that they can
-be retrieved from either service thankfs to data redirect.
+be retrieved from either service thanks to our simple redirection scheme.
 
 The first part of the example below creates some temporary directories and
 starts two local mongoose servers server data out of each directory,
