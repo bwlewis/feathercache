@@ -17,8 +17,9 @@ or an R value corresponding to \code{key}.
 }
 \description{
 Retrieve a value corresponding to the specified \code{key} from the object store service
-connection \code{con}. If \code{key} corresponds to a directory, then a data frame listing
-the directory contents is returned.
+connection \code{con}. If \code{key} corresponds to a directory path, then a data frame listing
+the directory contents is returned. Set \code{key=""} to list the contents of the
+service root directory path.
 }
 \note{
 Directory entries in the data frame directory listing output are identified by \code{size=NA}.

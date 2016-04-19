@@ -134,7 +134,7 @@ The example caches R objects on each service and then shows that they can
 be retrieved from either service thanks to our simple redirection scheme.
 
 The first part of the example below creates some temporary directories and
-starts two local mongoose servers server data out of each directory,
+starts two local mongoose servers serving data out of each directory,
 respectively. The example then caches two R numeric vectors, one in each
 server.
 ```{r}

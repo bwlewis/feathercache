@@ -28,8 +28,9 @@ register_service = function(url="http://localhost:8000", backend=mongoose, ...)
 #' Retrieve a Value from an Object Store
 #'
 #' Retrieve a value corresponding to the specified \code{key} from the object store service
-#' connection \code{con}. If \code{key} corresponds to a directory, then a data frame listing
-#' the directory contents is returned.
+#' connection \code{con}. If \code{key} corresponds to a directory path, then a data frame listing
+#' the directory contents is returned. Set \code{key=""} to list the contents of the
+#' service root directory path.
 #' @param con An object store connection from \code{\link{register_service}}.
 #' @param key A key name, optionally including a \code{/} separated directory path.
 #' @return Either a data frame directory listing when \code{key} corresponds to a directory,
