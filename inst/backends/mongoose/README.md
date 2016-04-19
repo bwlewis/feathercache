@@ -15,15 +15,15 @@ sudo apt-get install libssl-dev
 make
 ```
 
-Set up a self-signed TLS certificate with:
+Set up a self-signed TLS certificate with, for instance:
 ```
-openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 1000 -nodes && cat cert.pem key.pem >> ssl.pem && rm cert.pem key.pem
+openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 -subj "/C=US/ST=MA/L=Cleveland/O=BWLewis/CN=$(hostname)" -keyout cert.pem 2>/dev/null >> cert.pem
 ```
-Then put the `key.pem` file in a path available to mongoose specified with the `-P <cert file>` option.
+Then put the `cert.pem` file in a path available to mongoose specified with the `-s <cert file>` option.
 
-## Start an ad hoc mongoose server from R
+## Start an ad hoc mongoose server from R on port 8000
 
-See documentation for the `mongoose_start()` function for possible options.
+See documentation for the `mongoose_start()` function for possible options, including other ports.
 ```r
 library(feathercache)
 mongoose_start()
@@ -75,24 +75,35 @@ per-directory access control.
 
 ### Global authentication example
 
+We use the Apache `htdigest` program below. You can also use the `htdigest()`
+function in the feathercache R package to generate and edit password files.
+
+The mongoose server requires that you specify a global digest password file
+with its full path, illustrated below as `/tmp/.htpasswd`.
 ```
 # adding user 'blewis' with authentication domain 'realm'
- htdigest -c .htpasswd realm blewis
+ htdigest -c /tmp/.htpasswd realm blewis
 
 # Specify the same authentication domain 'realm' when starting mongoose
-./mongoose -a realm -P .htpasswd
+# SPECIFY THE FULL PATH TO THE GLOBAL PASSWORD FILE
+./mongoose -a realm -P /tmp/.htpasswd
 ```
+The global
+password file must be readable whatever user the mongoose server runs as,
+of course, but it *does not* need to be located in the web server document
+root directory path.
 
 ### Per-directory user access control
 
-Use the `-A <access file>` option and place an htdigest file in each directory
-to control access on a per-directory level. Directories without an access file
-are globally accessible, unless a global authentication file is set.
-
-Only one of the `-A` or `-P` options may be used.
-
+Control access per directory by placing a digest access control file named
+`.htpasswd` in any directory in the mongoose web server document root path.
+Directories without an access file are globally accessible, unless a global
+authentication file is set. If both a global access file and a per-directory
+access file are specified, the global file takes precedence.
 
 ## Auto redirect
+
+Nifty!
 
 Start a cluster of `mongoose` servers on different machines with the `-f`
 option pointing in a ring between the servers. For instance,
@@ -108,3 +119,9 @@ errors are returned to the client as redirects to the next server.
 This simple approach lets you store key/values across several servers using any
 desired sharding strategy and locate a given key without advance knowledge of
 its location. Not terribly efficient, but reasonably effective.
+
+## Directory listings
+
+Unlike most web servers, we've rigged the mongoose server in feathercache
+to report directory listings in JSON form. This works nicely with the
+feathercache R package functions.

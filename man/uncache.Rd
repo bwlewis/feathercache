@@ -4,7 +4,7 @@
 \alias{uncache}
 \title{Retrieve a Value from an Object Store}
 \usage{
-uncache(con, key)
+uncache(con, key = "")
 }
 \arguments{
 \item{con}{An object store connection from \code{\link{register_service}}.}
@@ -12,13 +12,16 @@ uncache(con, key)
 \item{key}{A key name, optionally including a \code{/} separated directory path}
 }
 \value{
-Either a data frame directory listing in \code{key} corresponds to a directory,
+Either a data frame directory listing when \code{key} corresponds to a directory,
 or an R value corresponding to \code{key}.
 }
 \description{
 Retrieve a value corresponding to the specified \code{key} from the object store service
 connection \code{con}. If \code{key} corresponds to a directory, then a data frame listing
 the directory contents is returned.
+}
+\note{
+Directory entries in the data frame directory listing output are identified by \code{size=NA}.
 }
 \examples{
 # Start an example local mongoose backend server

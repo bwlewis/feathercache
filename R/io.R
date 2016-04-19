@@ -32,8 +32,9 @@ register_service = function(uri="http://localhost:8000", backend=mongoose, ...)
 #' the directory contents is returned.
 #' @param con An object store connection from \code{\link{register_service}}.
 #' @param key A key name, optionally including a \code{/} separated directory path
-#' @return Either a data frame directory listing in \code{key} corresponds to a directory,
+#' @return Either a data frame directory listing when \code{key} corresponds to a directory,
 #' or an R value corresponding to \code{key}.
+#' @note Directory entries in the data frame directory listing output are identified by \code{size=NA}.
 #' @seealso \code{\link{register_service}} \code{\link{cache}} \code{\link{delete}}
 #' @examples
 #' # Start an example local mongoose backend server

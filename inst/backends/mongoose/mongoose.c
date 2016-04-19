@@ -2548,22 +2548,11 @@ static void print_dir_entry(const struct de *de) {
   const char *slash = de->file.is_directory ? "/" : "";
 
   if (de->file.is_directory) {
-    mg_snprintf(de->conn, size, sizeof(size), "%s", "[DIRECTORY]");
+    mg_snprintf(de->conn, size, sizeof(size), "%s", "");
   } else {
      // We use (signed) cast below because MSVC 6 compiler cannot
      // convert unsigned __int64 to double. Sigh.
-    if (de->file.size < 1024) {
-      mg_snprintf(de->conn, size, sizeof(size), "%d", (int) de->file.size);
-    } else if (de->file.size < 0x100000) {
-      mg_snprintf(de->conn, size, sizeof(size),
-                  "%.1fk", (double) de->file.size / 1024.0);
-    } else if (de->file.size < 0x40000000) {
-      mg_snprintf(de->conn, size, sizeof(size),
-                  "%.1fM", (double) de->file.size / 1048576);
-    } else {
-      mg_snprintf(de->conn, size, sizeof(size),
-                  "%.1fG", (double) de->file.size / 1073741824);
-    }
+    mg_snprintf(de->conn, size, sizeof(size), "%.0f", (double) de->file.size);
   }
   strftime(mod, sizeof(mod), "%d-%b-%Y %H:%M",
            localtime(&de->file.modification_time));

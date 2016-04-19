@@ -21,8 +21,6 @@ mongoose_start(port = 8000L, path = getwd(), forward_to = NULL,
 \item{auth_domain}{HTTP digest authentication domain/realm}
 
 \item{global_auth}{HTTP digest global authentication file}
-
-\item{directory_auth}{HTTP digest per-directory authentication file name}
 }
 \value{
 Nothing; the mongoose server is started up as a background process.

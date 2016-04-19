@@ -70,6 +70,7 @@ mongoose = function(uri, ...)
       {
         ans = jsonlite::fromJSON(rawToChar(resp$content)) # XXX
         ans = ans[!(nchar(ans$key) == 0), ]
+        ans$size = as.numeric(ans$size)
         return(ans)
       }
       return(getfun(resp$content)) ## XXX get rid of copy here? stream?
