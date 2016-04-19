@@ -105,7 +105,7 @@ access file are specified, the global file takes precedence.
 
 Nifty!
 
-Start a cluster of `mongoose` servers on different machines with the `-f`
+Start a cluster of mongoose servers on different machines with the `-f`
 option pointing in a ring between the servers. For instance,
 ```
 # server_a: ./mongoose -f http://server_b:8000
