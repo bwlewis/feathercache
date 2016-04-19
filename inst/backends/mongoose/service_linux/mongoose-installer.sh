@@ -126,7 +126,7 @@ cat > /usr/local/share/man/man1/mongoose.1 << 4ZZZ
 mongoose \- Basic HTTP/S Object Store Service
 .SH SYNOPSIS
 .B mongoose
-[\-h] [\-d \fIroot_path\fR] [\-p \fIport\fR] [\-s \fIssl_cert_file\fR] [\-a \fIauth_domain\fR] [\-P \fIglobal_auth_file\fR] [\-A \fIper_directory_auth_file\fR] [\-l \fIlog_level\fR] [\-f \fIforward_to_host\fR]
+[\-h] [\-d \fIroot_path\fR] [\-p \fIport\fR] [\-s \fIssl_cert_file\fR] [\-a \fIauth_domain\fR] [\-P \fIglobal_auth_file\fR] [\-l \fIlog_level\fR] [\-f \fIforward_to_host\fR]
 .SH DESCRIPTION
 A super-basic HTTP/S service that supports a GET/PUT/DELETE object store.
 
@@ -145,13 +145,10 @@ Listen on the specified port, 8000.
 Full path to a TLS/SSL certificate file, leave undefined to disable TLS.
 .TP
 .B \-a \fIauth_doman\fR
-Digest authentication domain; requires \-P or \-A option below to enable digest authentication.
+Digest authentication domain; requires \-P option below or .htpasswd files.
 .TP
 .B \-P \fIglobal_auth_file\fR
 Path to global digest authentication file.
-.TP
-.B \-A \fIper_directory_auth_file\fR
-Name of per-directory digest authentication file; at most one of \-P and \-A may be specified.
 .TP
 .B \-l \fIlog_level\fR
 System message log level 0 (none) to 4 (crazy verbose debugging).
