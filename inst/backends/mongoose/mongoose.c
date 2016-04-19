@@ -3049,7 +3049,7 @@ static int forward_body_data(struct mg_connection *conn, FILE *fp,
   assert(fp != NULL);
 
 
-  if (conn->content_len == -1) {
+  if (conn->content_len < 0) {
     send_http_error(conn, 411, "Length Required", "%s", "");
   } else if (expect != NULL && mg_strcasecmp(expect, "100-continue")) {
     send_http_error(conn, 417, "Expectation Failed", "%s", "");

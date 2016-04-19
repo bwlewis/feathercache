@@ -50,7 +50,6 @@ do_start()
   SSL=\$(cat /etc/mongoose.conf | sed -n /^[[:blank:]]*ssl_cert:/p | tail -n 1 | sed -e "s/#.*//" | sed -e "s/.*://" | sed -e "s/^ *//" | sed -e "s/[[:blank:]]*$//")
   AUTH=\$(cat /etc/mongoose.conf | sed -n /^[[:blank:]]*auth_domain:/p | tail -n 1 | sed -e "s/#.*//" | sed -e "s/.*://" | sed -e "s/^ *//" | sed -e "s/[[:blank:]]*$//")
   GLOB=\$(cat /etc/mongoose.conf | sed -n /^[[:blank:]]*global_auth_file:/p | tail -n 1 | sed -e "s/#.*//" | sed -e "s/.*://" | sed -e "s/^ *//" | sed -e "s/[[:blank:]]*$//")
-  PERD=\$(cat /etc/mongoose.conf | sed -n /^[[:blank:]]*per_directory_auth_file:/p | tail -n 1 | sed -e "s/#.*//" | sed -e "s/.*://" | sed -e "s/^ *//" | sed -e "s/[[:blank:]]*$//")
   LL=\$(cat /etc/mongoose.conf | sed -n /^[[:blank:]]*log_level:/p | tail -n 1 | sed -e "s/#.*//" | sed -e "s/.*://" | sed -e "s/^ *//" | sed -e "s/[[:blank:]]*$//")
   FORW=\$(cat /etc/mongoose.conf | sed -n /^[[:blank:]]*forward_to:/p | tail -n 1 | sed -e "s/#.*//" | sed -e "s/.*://" | sed -e "s/^ *//" | sed -e "s/[[:blank:]]*$//")
 
@@ -61,13 +60,12 @@ do_start()
   [ -n "\${PORT}" ] && PORT="-p \${PORT}"
   [ -n "\${FORW}" ] && FORW="-f \${FORW}"
   [ -n "\${LL}" ] && LL="-l \${LL}"
-  [ -n "\${PERD}" ] && PERD="-A \${PERD}"
   [ -n "\${GLOB}" ] && GLOB="-P \${GLOB}"
   [ -n "\${AUTH}" ] && AUTH="-a \${AUTH}"
   [ -n "\${SSL}" ] && SSL="-s \${SSL}"
 
   [ -z "\${USER}" ]   && USER=nobody
-  sudo -b -n -E -u \${USER} /usr/local/bin/mongoose \${DIR} \${PORT} \${FORW} \${LL} \${PERD} \${GLOB} \${AUTH} \${SSL} 0<&- 2> >(logger  -i -t mongoose) &
+  sudo -b -n -E -u \${USER} /usr/local/bin/mongoose \${DIR} \${PORT} \${FORW} \${LL} \${GLOB} \${AUTH} \${SSL} 0<&- 2> >(logger  -i -t mongoose) &
 }
 
 #
@@ -115,12 +113,11 @@ cat > /etc/mongoose.conf << 3ZZZ
 user: nobody        # user that runs the service
 path: /tmp          # Object storage root path
 port: 8000          # Mongoose service port number
-log_level: 0        # 0-4 (4 is crazy verbose debugging)
+log_level: 0        # 0-2 (0 error; 1 error + info; 2 error + info + debug)
 #forward_to: URI    # forward "not found" requests to another mongoose
 #ssl_cert: file     # TLS/SSL cert file (leave undefined to disable TLS)
 #auth_domain: realm            # Digest authentication domain
 #global_auth_file: file        # Digest global auth file
-#per_directory_auth_file: file # Digest per-dir auth file
 3ZZZ
 
 cat > /usr/local/share/man/man1/mongoose.1 << 4ZZZ
