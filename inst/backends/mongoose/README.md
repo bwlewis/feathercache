@@ -112,13 +112,14 @@ option pointing in a ring between the servers. For instance,
 # server_b: ./mongoose -f http://server_c:8000
 # server_c: ./mongoose -f http://server_a:8000
 ```
+GET and DELETE requests (`uncache()` and `delete()` in the R package) that
+result in "404 not found" errors are returned to the client as redirects to the
+next server. PUT requests are never redirected.
 
-GET requests (`uncache` in the R package) that result in "404 not found"
-errors are returned to the client as redirects to the next server.
-
-This simple approach lets you store key/values across several servers using any
-desired sharding strategy and locate a given key without advance knowledge of
-its location. Not terribly efficient, but reasonably effective.
+You can store key/values across several servers using any desired sharding
+strategy and then clients may download or delete them without advance knowledge
+of storage location. This approach introduces latency for the sake of extreme
+simplicity.
 
 ## Directory listings
 
