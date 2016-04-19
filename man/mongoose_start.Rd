@@ -6,8 +6,7 @@
 Manuall start a local mongoose service}
 \usage{
 mongoose_start(port = 8000L, path = getwd(), forward_to = NULL,
-  ssl_cert = NULL, auth_domain = NULL, global_auth = NULL,
-  directory_auth = NULL)
+  ssl_cert = NULL, auth_domain = NULL, global_auth = NULL)
 }
 \arguments{
 \item{port}{service port number}
@@ -20,7 +19,7 @@ mongoose_start(port = 8000L, path = getwd(), forward_to = NULL,
 
 \item{auth_domain}{HTTP digest authentication domain/realm}
 
-\item{global_auth}{HTTP digest global authentication file}
+\item{global_auth}{HTTP digest global authentication file (with full path)}
 }
 \value{
 Nothing; the mongoose server is started up as a background process.
@@ -31,5 +30,8 @@ Manuall start a local mongoose service
 }
 \note{
 Leave parameters \code{NULL} to not use the corresponding features.
+}
+\seealso{
+\code{\link{htdigest}}
 }
 

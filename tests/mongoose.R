@@ -14,4 +14,13 @@ d <- uncache(con, "mystuff")          # list the contents of 'mystuff'
 check(all(c("cars", "iris") %in% d$key), TRUE)
 x <- uncache(con, "mystuff/iris")      # retrieve iris from the cache
 check(iris, x)
+
+# weird characters
+n <- cache(con, iris, key="mystuff/~ ! @#$%^&*()-_=+[]{}:;\"'<>,.?`")
+x <- uncache(con, n)
+check(iris, x)
+
+# delete 'mystuff' path
+delete(con, "mystuff")
+
 mongoose_stop()

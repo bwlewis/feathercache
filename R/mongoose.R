@@ -92,8 +92,9 @@ mongoose = function(uri, ...)
 #' @param forward_to forward 'not found' requests to another server
 #' @param ssl_cert TLS/SSL certificate
 #' @param auth_domain HTTP digest authentication domain/realm
-#' @param global_auth HTTP digest global authentication file
+#' @param global_auth HTTP digest global authentication file (with full path)
 #' @note Leave parameters \code{NULL} to not use the corresponding features.
+#' @seealso \code{\link{htdigest}}
 #' @return Nothing; the mongoose server is started up as a background process.
 #' @export
 mongoose_start = function(port=8000L,
@@ -101,8 +102,7 @@ mongoose_start = function(port=8000L,
                           forward_to=NULL,
                           ssl_cert=NULL,
                           auth_domain=NULL,
-                          global_auth=NULL,
-                          directory_auth=NULL)
+                          global_auth=NULL)
 {
   m = system.file("backends/mongoose/mongoose", package="feathercache")
   if(nchar(m) == 0) stop("mongoose not found!")
