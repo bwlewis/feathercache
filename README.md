@@ -15,10 +15,10 @@ we also plan to support `minio` (https://minio.io) and Amazon S3 object storage
 services.
 
 ## Status
-<a href="https://travis-ci.org/bwlewis/irlba">
-<img src="https://travis-ci.org/bwlewis/irlba.svg?branch=master" alt="Travis CI status"></img>
+<a href="https://travis-ci.org/bwlewis/feathercache">
+<img src="https://travis-ci.org/bwlewis/feathercache.svg?branch=master" alt="Travis CI status"></img>
 </a>
-[![codecov.io](https://codecov.io/github/bwlewis/irlba/coverage.svg?branch=master)](https://codecov.io/github/bwlewis/irlba?branch=master)
+[![codecov.io](https://codecov.io/github/bwlewis/feathercache/coverage.svg?branch=master)](https://codecov.io/github/bwlewis/feathercache?branch=master)
 
 ## Installation (R)
 
