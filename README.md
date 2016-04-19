@@ -7,10 +7,12 @@ Python, and other languages. For now it's just a really simple, generic,
 networked binary object store.
 
 Feathercache supports GET/PUT/DELETE-style operations using modular back end
-storage services. Our R package calls them `cache()`, `uncache()`, and
-`delete()`.  Out of the box support is provided by the included
-`mongoose` web service, but we also plan to support `minio` (https://minio.io)
-and Amazon S3 object storage services.
+storage services. Our R package calls those operations `cache()`, `uncache()`,
+and `delete()`.
+
+Out of the box support is provided by the included `mongoose` web service, but
+we also plan to support `minio` (https://minio.io) and Amazon S3 object storage
+services.
 
 
 ## Installation (R)
@@ -27,7 +29,7 @@ devtools::install_github("bwlewis/feathercache")
 ```{r}
 library(feathercache)
 mongoose_start()                      # starts a local mongoose server on port 8000
-con <- register_service()             # register the local mongoose
+con <- register_service()             # register the local mongoose backend
 cache(con, iris, key="mystuff/iris")  # put a copy of iris in the 'mystuff' directory
 cache(con, cars, key="mystuff/cars")  # put a copy of cars in the 'mystuff' directory
 
@@ -48,10 +50,10 @@ options are of course available, including:
 
 But we wanted an approach that works out of the box without dependencies, and
 could optionally work with some more sophisticated external systems without
-modification. We also wanted speed, multiple options for scalability,
-the simplicity of a file system, 
-_and most important, we want to work with data
-in native R or Python form to minimize or eliminate data marshaling cost._
+modification. We also wanted speed, multiple options for scalability, speed,
+the simplicity of a file system, _and most important, we want to work with data
+in native R or Python form to minimize or eliminate data marshaling cost._ And
+speed.
 
 We see our approach working well with lightweight distributed computing systems
 that are decoupled from I/O like R's foreach and doRedis packages
