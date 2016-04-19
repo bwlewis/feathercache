@@ -2,7 +2,7 @@
 urlEncodePath = function (x) 
 {
   enc = utils::URLencode(x, reserved=TRUE)
-  gsub("%2[Ff]", "/", x)
+  gsub("%2[Ff]", "/", enc)
 }
 
 #' Create or Update a Digest Authentication File

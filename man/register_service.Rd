@@ -4,10 +4,10 @@
 \alias{register_service}
 \title{Register an Object Store Service}
 \usage{
-register_service(uri = "http://localhost:8000", backend = mongoose, ...)
+register_service(url = "http://localhost:8000", backend = mongoose, ...)
 }
 \arguments{
-\item{uri}{The service root URI including protocol, address and port number. For example \code{http://localhost:8000}.}
+\item{url}{The service root url including protocol, address and port number. For example \code{http://localhost:8000}.}
 
 \item{backend}{A service backend provider. The default is \code{mongoose}, but you may choose from other available
 backends like \code{minio} and {s3}.}
@@ -15,7 +15,7 @@ backends like \code{minio} and {s3}.}
 \item{...}{Backend-specific arguments, see backend documentation for details.}
 }
 \value{
-A uri corresponding to the cached value.
+A function used by \code{\link{cache}}, \code{\link{uncache}} and \code{\link{delete}} to access the service.
 }
 \description{
 Register an object store service backend, including backend-specific options

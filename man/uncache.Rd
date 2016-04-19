@@ -9,7 +9,7 @@ uncache(con, key = "")
 \arguments{
 \item{con}{An object store connection from \code{\link{register_service}}.}
 
-\item{key}{A key name, optionally including a \code{/} separated directory path}
+\item{key}{A key name, optionally including a \code{/} separated directory path.}
 }
 \value{
 Either a data frame directory listing when \code{key} corresponds to a directory,

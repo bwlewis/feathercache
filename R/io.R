@@ -2,11 +2,11 @@
 #'
 #' Register an object store service backend, including backend-specific options
 #' like authentication, encryption, and compression.
-#' @param uri The service root URI including protocol, address and port number. For example \code{http://localhost:8000}.
+#' @param url The service root url including protocol, address and port number. For example \code{http://localhost:8000}.
 #' @param backend A service backend provider. The default is \code{mongoose}, but you may choose from other available
 #' backends like \code{minio} and {s3}.
 #' @param ... Backend-specific arguments, see backend documentation for details.
-#' @return A uri corresponding to the cached value.
+#' @return A function used by \code{\link{cache}}, \code{\link{uncache}} and \code{\link{delete}} to access the service.
 #' @seealso \code{\link{mongoose}} \code{link{cache}} \code{\link{uncache}} \code{\link{delete}}
 #' @examples
 #' # Start an example local mongoose backend server
@@ -20,7 +20,7 @@
 #' delete(con, "mydata")
 #' mongoose_stop()
 #' @export
-register_service = function(uri="http://localhost:8000", backend=mongoose, ...)
+register_service = function(url="http://localhost:8000", backend=mongoose, ...)
 {
   backend(uri, ...)
 }
@@ -31,7 +31,7 @@ register_service = function(uri="http://localhost:8000", backend=mongoose, ...)
 #' connection \code{con}. If \code{key} corresponds to a directory, then a data frame listing
 #' the directory contents is returned.
 #' @param con An object store connection from \code{\link{register_service}}.
-#' @param key A key name, optionally including a \code{/} separated directory path
+#' @param key A key name, optionally including a \code{/} separated directory path.
 #' @return Either a data frame directory listing when \code{key} corresponds to a directory,
 #' or an R value corresponding to \code{key}.
 #' @note Directory entries in the data frame directory listing output are identified by \code{size=NA}.
@@ -61,9 +61,10 @@ uncache = function(con, key="")
 #' @param value Any serializeable R value.
 #' @param key A key name, optionally including a \code{/} separated directory path
 #' @return A character string corresponding to the url of the uploaded object.
-#' @note Key names are url-encoded and may be changed (see the returned value for the url of the
+#' @note Key names are url-encoded and may be changed (\code{cache} returns the uri of the
 #' stored value). The forward slash character \code{/} is NOT url-encoded and reserved for directory
-#' path information.
+#' path information. Do not use any slash (forward or backward) in your key names, they will
+#' be interpreted as directory separators.
 #' @seealso \code{\link{register_service}} \code{\link{uncache}} \code{\link{delete}}
 #' @examples
 #' # Start an example local mongoose backend server

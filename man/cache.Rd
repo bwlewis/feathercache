@@ -21,9 +21,10 @@ Upload the R \code{value} to the object store connection \code{con} with the key
 optional path specified by \code{key}.
 }
 \note{
-Key names are url-encoded and may be changed (see the returned value for the url of the
+Key names are url-encoded and may be changed (\code{cache} returns the uri of the
 stored value). The forward slash character \code{/} is NOT url-encoded and reserved for directory
-path information.
+path information. Do not use any slash (forward or backward) in your key names, they will
+be interpreted as directory separators.
 }
 \examples{
 # Start an example local mongoose backend server
