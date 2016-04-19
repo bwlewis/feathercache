@@ -92,7 +92,6 @@ mongoose = function(uri, ...)
 #' @param ssl_cert TLS/SSL certificate
 #' @param auth_domain HTTP digest authentication domain/realm
 #' @param global_auth HTTP digest global authentication file
-#' @param directory_auth HTTP digest per-directory authentication file name
 #' @note Leave parameters \code{NULL} to not use the corresponding features.
 #' @return Nothing; the mongoose server is started up as a background process.
 #' @export
@@ -111,7 +110,6 @@ mongoose_start = function(port=8000L,
   if(!is.null(ssl_cert)) cmd = sprintf("%s -s %s", cmd, ssl_cert)
   if(!is.null(auth_domain)) cmd = sprintf("%s -a %s", cmd, auth_domain)
   if(!is.null(global_auth)) cmd = sprintf("%s -P %s", cmd, global_auth)
-  if(!is.null(directory_auth)) cmd = sprintf("%s -A %s", cmd, directory_auth)
   system(cmd, wait=FALSE)
 }
 

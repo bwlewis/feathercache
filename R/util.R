@@ -22,7 +22,7 @@ htdigest = function(file, realm, user, password)
 {
   entry = sprintf("%s:%s:%s", user, realm,
             digest::digest(charToRaw(sprintf("%s:%s:%s", user, realm, password)), serialize=FALSE, algo="md5"))
-  f = tryCatch(readLines(file), error=function(e) c())
+  f = tryCatch(readLines(file), error=function(e) c(), warning=function(e) c())
   key = sprintf("%s:%s:", user, realm)
   idx = grep(key, f)
   if(length(idx) > 0)

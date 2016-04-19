@@ -47,7 +47,7 @@ register_service = function(uri="http://localhost:8000", backend=mongoose, ...)
 #' delete(con, "mydata")
 #' mongoose_stop()
 #' @export
-uncache = function(con, key)
+uncache = function(con, key="")
 {
   con("get", key=key)
 }
