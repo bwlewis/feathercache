@@ -22,7 +22,7 @@
 #' @export
 register_service = function(url="http://localhost:8000", backend=mongoose, ...)
 {
-  backend(uri, ...)
+  backend(url, ...)
 }
 
 #' Retrieve a Value from an Object Store
