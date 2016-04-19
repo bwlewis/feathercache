@@ -10,6 +10,8 @@ addons:
     packages:
       - r-base-dev
       - r-recommended
+      - libgnutls-dev
+      - libssl-dev
       - pandoc
       - texinfo
       - texlive
