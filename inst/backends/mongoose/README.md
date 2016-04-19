@@ -101,7 +101,7 @@ Directories without an access file are globally accessible, unless a global
 authentication file is set. If both a global access file and a per-directory
 access file are specified, the global file takes precedence.
 
-## Auto redirect
+## Data redirect
 
 Nifty!
 
@@ -121,8 +121,63 @@ strategy and then clients may download or delete them without advance knowledge
 of storage location. This approach introduces latency for the sake of extreme
 simplicity.
 
+
+### A trivial example on a single server
+
+The example below starts two mongoose services running on different ports on
+the same machine and serving data out of different paths to sort of emulate
+running on different machines.
+
+The example caches R objects on each service and then shows that they can
+be retrieved from either service thankfs to data redirect.
+
+The first part of the example below creates some temporary directories and
+starts two local mongoose servers server data out of each directory,
+respectively. The example then caches two R numeric vectors, one in each
+server.
+```{r}
+library(feathercache)
+path1 = sprintf("%s/1", tempdir())
+path2 = sprintf("%s/2", tempdir())
+dir.create(path1)
+dir.create(path2)
+mongoose_start(port=8001, forward_to="http://localhost:8002", path=path1)
+mongoose_start(port=8002, forward_to="http://localhost:8001", path=path2)
+con1 = register_service("http://localhost:8001")
+con2 = register_service("http://localhost:8002")
+
+cache(con1, 1:5, key="one")
+# [1] "one"
+
+cache(con2, 6:10, key="six")
+# [1] "six"
+```
+We can list the contents of each server directory to verify that, indeed,
+each service only shows one of the cached R objects.
+```{r}
+uncache(con1)
+#               key               mod size
+# 1             one 19-Apr-2016 16:59   69
+
+uncache(con2)
+#              key               mod size
+# 1            six 19-Apr-2016 16:59   69
+```
+Finally, we retrieve the cached R vectors, but from the "wrong" servers.
+With the mongoose `-f` option our requests are automatically redirected and work!
+```{r}
+uncache(con2, "one")
+# [1] 1 2 3 4 5
+
+uncache(con1, "six")
+# [1]  6  7  8  9 10
+
+
+mongoose_stop()  # terminate our example local mongoose servers
+```
+
+
 ## Directory listings
 
-Unlike most web servers, we've rigged the mongoose server in feathercache
-to report directory listings in JSON form. This works nicely with the
-feathercache R package functions.
+We rigged the mongoose server in feathercache to report directory listings in
+JSON form. This works nicely with the feathercache R package functions.
