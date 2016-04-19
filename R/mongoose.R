@@ -20,6 +20,8 @@ mongoose = function(uri, ...)
   base = uri
   opts = list(...)
 
+  serialize0 = function(x, con) if(is.raw(x)) x else serialize(x, con)
+
   if(is.null(opts$compression)) opts$compression = "lz4"
   if(is.null(opts$ssl_verifyhost)) opts$ssl_verifyhost = 0
   if(is.null(opts$ssl_verifypeer)) opts$ssl_verifypeer = 0
@@ -31,9 +33,9 @@ mongoose = function(uri, ...)
              xz=function(x) unserialize(memDecompress(x, type="xz")),
              function(x) unserialize(x))
   putfun = switch(opts$compression,
-             lz4=function(x) lz4::lzCompress(serialize(x, NULL)),
-             gzip=function(x) memCompress(serialize(x, NULL), type="gzip"),
-             xz=function(x) memCompress(serialize(x, NULL), type="xz"),
+             lz4=function(x) lz4::lzCompress(serialize0(x, NULL)),
+             gzip=function(x) memCompress(serialize0(x, NULL), type="gzip"),
+             xz=function(x) memCompress(serialize0(x, NULL), type="xz"),
              function(x) serialize(x, NULL))
 
   function(proto, ...)
