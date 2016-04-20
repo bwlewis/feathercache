@@ -5116,11 +5116,47 @@ struct mg_context *mg_start(const struct mg_callbacks *callbacks,
 }
 
 
+#ifdef __linux__
 
+/* Restart service on abnormal exit/crash.  We will manage this on Windows
+ * differently using Windows service settings (sc).
+ * What about OS X? Should this code also apply there? XXX?
+ */
 
+int _main(int, char **);
 
 int
+main (int argc, char ** argv)
+{
+  int status;
+  int restart = 1;
+  while (restart)
+    {
+      pid_t pid = fork();
+      switch (pid)
+        {
+          case -1: exit(-1);
+          case 0: exit(_main(argc, argv));
+          default: break;
+        }
+      wait(&status);
+      if(WIFSIGNALED(status))
+      {
+        status = WTERMSIG(status);
+        if(status == 15 || status == 9 || status == 3) restart = 0;
+        else LOGGER(0, ("restarting mongoose process after abnormal exit status %d", status));
+      }
+    }
+  LOGGER(1, ("normal mongoose shutdown"));
+  return 0;
+}
+
+int
+_main (int argc, char **argv)
+#else
+int
 main (int argc, char **argv)
+#endif
 {
   int i;
   struct mg_context *ctx;
