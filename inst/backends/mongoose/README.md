@@ -75,7 +75,7 @@ per-directory access control.
 
 ### Global authentication example
 
-We use the Apache `htdigest` program below. You can also use the `htdigest()`
+We use the Apache htdigest program below. You can also use the `htdigest()`
 function in the feathercache R package to generate and edit password files.
 
 The mongoose server requires that you specify a global digest password file
@@ -89,7 +89,7 @@ with its full path, illustrated below as `/tmp/.htpasswd`.
 ./mongoose -a realm -P /tmp/.htpasswd
 ```
 The global
-password file must be readable whatever user the mongoose server runs as,
+password file must be readable by whatever user the mongoose server runs as,
 of course, but it *does not* need to be located in the web server document
 root directory path.
 
@@ -120,7 +120,7 @@ You can store key/values across several servers using any desired sharding
 strategy and then clients may download or delete them without advance knowledge
 of storage location. This approach introduces latency on the order of the
 mongoose cluster size, but provides an *extremely* simple way to take advantage
-of aggregated bandwidth from multiple servers. It wokrs best with smallish
+of aggregated bandwidth from multiple servers. It works best with smallish
 numbers of mongoose servers.
 
 

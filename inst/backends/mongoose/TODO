@@ -1,3 +1,7 @@
+- support for HTTP chunked encoding PUT upload
+  (we emit chunked output, but can't take it yet)
 - Add ?sync query variable option to PUT
 - check file locking in PUT
 - service and package installation and scripts (all operating systems)
+- implement find operation. One idea for this, where 'dir' is a directory path:
+  http://localhost:8000/dir?find=filename

@@ -6,9 +6,9 @@ but has the design of assembling http requests in memory before servicing them
 (in particular PUT requests). This slowed things down and could use quite a lot
 of RAM in the mongoose process for large uploads.
 
-I'm sure that a handler can be written for the new code base that can avoid
-this, but seemed like a bit of work to do (I could easily be wrong about this).
-Anyone want to revisit that? See with the commit reference above for a fully
+I'm sure that a handler can be written for the newer mongoose code that can
+avoid this, but seemed like a bit of work to do (I could easily be wrong about
+this).  Anyone want to revisit that? See the commit reference above for a fully
 functional implementation to get started.
 
 Meanwhile the older mongoose code has a design that's a bit lower level but
