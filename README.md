@@ -10,7 +10,7 @@ Feathercache supports GET/PUT/DELETE-style operations using modular back end
 storage services. Our R package calls those operations `cache()`, `uncache()`,
 and `delete()`.
 
-Out of the box support is provided by the included `mongoose` web service, but
+Out of the box support is provided by the included mongoose web service, but
 we also plan to support minio (https://minio.io) and Amazon S3 object storage
 services.
 
@@ -103,15 +103,15 @@ and can be used interchangeably with that service when it's ready.
 You might be thinking, why not just use Redis (http://redis.io) or whatever?
 Indeed Redis is pretty awesomely fast, well-supported across multiple operating
 systems, and has tons of features beyond simple GET/PUT. But Redis has some
-issues too, for example, values are limited in size. And if you want to just
-copy the "database" for offline analysis or backup, the values and keys are not
-simple files and need to be accessed through Redis itself. Those issues are
-typical of many databases. Mongodb (https://www.mongodb.org/) and RethinkDB
-(http://rethinkdb.com/), for instance, are superb document databases.  But
-values are also limited in size, although GridFS (https://docs.mongodb.org/manual/core/gridfs/)
-is an option but that brings additional configuration complexity,
-and they're geared to working with structured
-values in JSON form, not arbitrary serialized R objects.
+issues too, for example, values are limited to a relatively small size.  And if
+you want to just copy the "database" for offline analysis or backup, the values
+and keys are not simple files and need to be accessed through Redis itself.
+Those issues are typical of many databases. Mongodb (https://www.mongodb.org/)
+and RethinkDB (http://rethinkdb.com/), for instance, are superb document
+databases.  But values are limited to a very small size, although GridFS
+(https://docs.mongodb.org/manual/core/gridfs/) is an option but that brings
+additional configuration complexity, and they're geared to working with
+structured values in JSON form, not arbitrary serialized R objects.
 
 Apache Geode (http://geode.incubator.apache.org/) is super fast, has very
 large value size limits (terabytes), and provides very strong consistency
