@@ -51,7 +51,7 @@ do_start()
   AUTH=\$(cat /etc/mongoose.conf | sed -n /^[[:blank:]]*auth_domain:/p | tail -n 1 | sed -e "s/#.*//" | sed -e "s/.*://" | sed -e "s/^ *//" | sed -e "s/[[:blank:]]*$//")
   GLOB=\$(cat /etc/mongoose.conf | sed -n /^[[:blank:]]*global_auth_file:/p | tail -n 1 | sed -e "s/#.*//" | sed -e "s/.*://" | sed -e "s/^ *//" | sed -e "s/[[:blank:]]*$//")
   LL=\$(cat /etc/mongoose.conf | sed -n /^[[:blank:]]*log_level:/p | tail -n 1 | sed -e "s/#.*//" | sed -e "s/.*://" | sed -e "s/^ *//" | sed -e "s/[[:blank:]]*$//")
-  FORW=\$(cat /etc/mongoose.conf | sed -n /^[[:blank:]]*forward_to:/p | tail -n 1 | sed -e "s/#.*//" | sed -e "s/.*://" | sed -e "s/^ *//" | sed -e "s/[[:blank:]]*$//")
+  FORW=\$(cat /etc/mongoose.conf | sed -n /^[[:blank:]]*forward_to:/p | tail -n 1 | sed -e "s/#.*//" | sed -e "s/.*forward_to://" | sed -e "s/^ *//" | sed -e "s/[[:blank:]]*$//")
 
   # Set default values
   [ -z "\${DIR}" ]   && DIR=/tmp
