@@ -290,14 +290,12 @@ static pthread_t pthread_self(void) {
 
 
 #define LOGGER(level, x) if(level <= LOGGER_LEVEL)  { \
-  flockfile(stdout); \
   printf("%lu.%s.%d: ", \
          (unsigned long) time(NULL), \
          __func__, __LINE__); \
   printf x; \
   putchar('\n'); \
   fflush(stdout); \
-  funlockfile(stdout); \
 }
 
 // Darwin prior to 7.0 and Win32 do not have socklen_t
