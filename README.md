@@ -51,7 +51,6 @@ head(uncache(con, "mystuff/iris"))    # retrieve iris from the cache
 # 4          4.6         3.1          1.5         0.2  setosa
 # 5          5.0         3.6          1.4         0.2  setosa
 # 6          5.4         3.9          1.7         0.4  setosa
-:w
 
 delete(con, "mystuff")                # delete the whole 'mystuff' directory
 mongoose_stop()
