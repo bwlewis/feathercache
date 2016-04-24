@@ -20,7 +20,7 @@ services.
 </a>
 [![codecov.io](https://codecov.io/github/bwlewis/feathercache/coverage.svg?branch=master)](https://codecov.io/github/bwlewis/feathercache?branch=master)
 
-## Installation (R)
+## Installation (R example)
 
 You'll need the `devtools` package, for instance from `install.packages("devtools")`.
 
@@ -29,7 +29,7 @@ devtools::install_github("bwlewis/lz4")   # required dependency for now
 devtools::install_github("bwlewis/feathercache")
 ```
 
-## Quickstart (R)
+## Quickstart (R example)
 
 ```{r}
 library(feathercache)
