@@ -39,7 +39,20 @@ cache(con, iris, key="mystuff/iris")  # put a copy of iris in the 'mystuff' dire
 cache(con, cars, key="mystuff/cars")  # put a copy of cars in the 'mystuff' directory
 
 print(uncache(con, "mystuff"))        # list the contents of 'mystuff'
+#    key               mod size
+# 1 cars 24-Apr-2016 13:13  455
+# 2 iris 24-Apr-2016 13:13 2032
+
 head(uncache(con, "mystuff/iris"))    # retrieve iris from the cache
+#   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+# 1          5.1         3.5          1.4         0.2  setosa
+# 2          4.9         3.0          1.4         0.2  setosa
+# 3          4.7         3.2          1.3         0.2  setosa
+# 4          4.6         3.1          1.5         0.2  setosa
+# 5          5.0         3.6          1.4         0.2  setosa
+# 6          5.4         3.9          1.7         0.4  setosa
+:w
+
 delete(con, "mystuff")                # delete the whole 'mystuff' directory
 mongoose_stop()
 ```
