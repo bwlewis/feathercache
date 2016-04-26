@@ -65,7 +65,7 @@ do_start()
   [ -n "\${SSL}" ] && SSL="-s \${SSL}"
 
   [ -z "\${USER}" ]   && USER=nobody
-  sudo -b -n -E -u \${USER} /usr/local/bin/mongoose \${DIR} \${PORT} \${FORW} \${LL} \${GLOB} \${AUTH} \${SSL} 0<&- 2> >(logger  -i -t mongoose) &
+  sudo -b -n -E -u \${USER} /usr/local/bin/mongoose \${DIR} \${PORT} \${FORW} \${LL} \${GLOB} \${AUTH} \${SSL} 0<&- 1> >(logger  -i -t mongoose) 2>&1
 }
 
 #
