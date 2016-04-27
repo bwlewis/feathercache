@@ -81,9 +81,11 @@ that are decoupled from I/O like R's foreach and doRedis packages
 
 Feathercache is *not* a database. Right now, no claims to data consistency are
 made and a lot of things are left up to the clients (R, whatever). Think of it
-as a networked file system service like S3. We plan to put in basic locking and
-optional data synchronization guarantees very soon, but it's still not a
-database. Use a database if you think you need a database.
+as a networked object storage service like S3 (which is eventually consistent).
+We plan to put in basic locking and
+optional basic object synchronization guarantees very soon, but it's still not a
+database. Use a database if you think you need a database. Or, coordinate activity
+in the cache using an external system like https://github.com/coreos/etcd !
 
 ## Features
 
