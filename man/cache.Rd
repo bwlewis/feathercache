@@ -4,7 +4,7 @@
 \alias{cache}
 \title{Upload an R Value to an Object Store}
 \usage{
-cache(con, value, key)
+cache(con, value, key, xdr = FALSE)
 }
 \arguments{
 \item{con}{An object store connection from \code{\link{register_service}}.}
@@ -12,6 +12,8 @@ cache(con, value, key)
 \item{value}{Any serializeable R value.}
 
 \item{key}{A key name, optionally including a \code{/} separated directory path}
+
+\item{xdr}{set \code{xdr=TRUE} to use big-endian binary format, defaults to native binary}
 }
 \value{
 A character string corresponding to the url of the uploaded object.
