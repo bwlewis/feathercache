@@ -20,12 +20,13 @@ mongoose = function(uri, ...)
   base = uri
   opts = list(...)
 
-  serialize0 = function(x, con) if(is.raw(x)) x else serialize(x, con)
-
   if(is.null(opts$compression)) opts$compression = "lz4"
   if(is.null(opts$ssl_verifyhost)) opts$ssl_verifyhost = 0
   if(is.null(opts$ssl_verifypeer)) opts$ssl_verifypeer = 0
   if(is.null(opts$redirect_limit)) opts$redirect_limit = 3
+  if(is.null(opts$xdr)) opts$xdr = FALSE
+
+  serialize0 = function(x, con) if(is.raw(x)) x else serialize(x, con, xdr=opts$xdr)
 
   getfun = switch(opts$compression,
              lz4=function(x) unserialize(lz4::lzDecompress(x)),

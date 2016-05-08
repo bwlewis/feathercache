@@ -61,6 +61,7 @@ uncache = function(con, key="")
 #' @param con An object store connection from \code{\link{register_service}}.
 #' @param value Any serializeable R value.
 #' @param key A key name, optionally including a \code{/} separated directory path
+#' @param xdr set \code{xdr=TRUE} to use big-endian binary format, defaults to native binary
 #' @return A character string corresponding to the url of the uploaded object.
 #' @note Key names are url-encoded and may be changed (\code{cache} returns the uri of the
 #' stored value). The forward slash character \code{/} is NOT url-encoded and reserved for directory
@@ -79,9 +80,9 @@ uncache = function(con, key="")
 #' delete(con, "mydata")
 #' mongoose_stop()
 #' @export
-cache = function(con, value, key)
+cache = function(con, value, key, xdr=FALSE)
 {
-  con("put", value=value, key=key)
+  con("put", value=value, key=key, xdr=xdr)
 }
 
 #' Deleta a Value or Directory from an Object Store
