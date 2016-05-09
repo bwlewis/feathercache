@@ -51,6 +51,7 @@ register_service = function(url="http://localhost:8000", backend=mongoose, ...)
 #' @export
 uncache = function(con, key="")
 {
+  if(key == "/") key = ""
   con("get", key=key)
 }
 
