@@ -1,10 +1,7 @@
 # feathercache
 
-A stupid simple networked object store for R (and Python), delivered as an R
-package for now. We're calling this *feather*cache because someday we plan on
-caching feather (https://github.com/wesm/feather) objects in it for use with R,
-Python, and other languages. For now it's just a really simple, generic,
-networked binary object store.
+A stupid simple networked object store for R For now it's just a really simple,
+self-contained, generic, networked binary object store.
 
 Feathercache supports GET/PUT/DELETE-style operations using modular back end
 storage services. Our R package calls those operations `cache()`, `uncache()`,
@@ -81,11 +78,11 @@ that are decoupled from I/O like R's foreach and doRedis packages
 
 Feathercache is *not* a database. Right now, no claims to data consistency are
 made and a lot of things are left up to the clients (R, whatever). Think of it
-as a networked object storage service like S3 (which is eventually consistent).
-We plan to put in basic locking and
-optional basic object synchronization guarantees very soon, but it's still not a
-database. Use a database if you think you need a database. Or, coordinate activity
-in the cache using an external system like https://github.com/coreos/etcd !
+as a very crude networked object storage service like S3.  Forthcoming backends
+may support varying consistency levels, but even so feathercache is not a
+database. Use a database if you think you need a database.  Or, coordinate
+activity in the cache using an external system like
+https://github.com/coreos/etcd !
 
 ## Features
 
@@ -93,6 +90,27 @@ in the cache using an external system like https://github.com/coreos/etcd !
 * Simple standard GET/PUT/DELETE-style operations
 * Modular storage back ends: mongoose (default), minio, Amazon S3, Azure blob (someday?), ...
 
+## Storage back ends
+
+The package is equipped with a self-contained simple but relatively fast HTTP/S
+backend service using Mongoose (see below for many more details).
+
+But feathercache is designed to work with arbitrary object storage systems.
+Future support for the S3 protocol is planned.
+
+## Back end API
+
+Mongoose requires storage back ends to support the following REST-like
+operations:
+
+* get
+* put
+* delete
+* head
+
+These operations directly correspond to HTTP 1.1 verbs, and map to the
+corresponding high-level R package functions `uncache()`, `cache()`,
+`delete()`, and `info()`.
 
 ## Mongoose back end
 
@@ -143,6 +161,9 @@ outfitted as another modular back end. But I found the object store path
 compelling because of the potential scalability/performance potential of
 minio with their "XL" erasure-coded back end, and of course the proven
 scalability of S3 (at least if you're running in Amazon's ecosystem).
+
+Feathercache, by contrast, is trivially simple. Just point the built-in
+Mongoose service to a directory and serve data. Or use an S3 back end.
 
 # More documentation:
 

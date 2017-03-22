@@ -1,2 +1,3 @@
 - add a simple find operation to locate keys in a service path
+- read and delete (POP?)
 - minio
