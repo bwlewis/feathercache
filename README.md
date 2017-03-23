@@ -1,3 +1,11 @@
+# THIS IS A DEFUNCT PROJECT, REPLACED WITH A NEW PROJECT
+
+I'm keeping this repository here for posterity. The new version of this project
+will be called rs3 and may be found here: https://github.com/bwlewis/rs3
+
+Please avoid using this and instead use rs3, this project will no longer be
+maintained or developed by me...
+
 # feathercache
 
 A stupid simple networked object store for R For now it's just a really simple,
