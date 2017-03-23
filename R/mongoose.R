@@ -119,7 +119,12 @@ mongoose_start = function(port=8000L,
                           auth_domain=NULL,
                           global_auth=NULL)
 {
-  m = system.file("backends/mongoose/mongoose", package="feathercache")
+  exename = "backends/mongoose/mongoose"
+  if(grepl("windows", Sys.info()["sysname"], ignore.case=TRUE))
+  {
+    exename = "backends/mongoose/mongoose.exe"
+  }
+  m = system.file(exename, package="feathercache")
   if(nchar(m) == 0) stop("mongoose not found!")
   cmd = sprintf("%s -l 0 -d %s", m, path)
   if(!is.null(port)) cmd = sprintf("%s -p %d", cmd, as.integer(port))
