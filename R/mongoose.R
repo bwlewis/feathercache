@@ -105,7 +105,7 @@ mongoose = function(uri, ...)
 #' @param port service port number
 #' @param path full path to data directory
 #' @param forward_to forward 'not found' requests to another server
-#' @param ssl_cert TLS/SSL certificate
+#' @param ssl_cert optional SSL certificate for TLS-encrypted communication (if you specify this, the mongoose server will only use TLS encyption; otherwise no encryption is used)
 #' @param auth_domain HTTP digest authentication domain/realm
 #' @param global_auth HTTP digest global authentication file (with full path)
 #' @note Leave parameters \code{NULL} to not use the corresponding features.

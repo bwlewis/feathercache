@@ -15,7 +15,7 @@ mongoose_start(port = 8000L, path = getwd(), forward_to = NULL,
 
 \item{forward_to}{forward 'not found' requests to another server}
 
-\item{ssl_cert}{TLS/SSL certificate}
+\item{ssl_cert}{optional SSL certificate for TLS-encrypted communication (if you specify this, the mongoose server will only use TLS encyption; otherwise no encryption is used)}
 
 \item{auth_domain}{HTTP digest authentication domain/realm}
 
