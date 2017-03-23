@@ -1,3 +1,5 @@
+- consider renaming to simplestore or perhaps rs3?
+- consider overloading assign/get/rm instead of special cache/uncache/delete functions? Use the connection in place of pos and or environment arguments?
 - add a simple find operation to locate keys in a service path
 - read and delete (POP?)
 - minio
