@@ -1,7 +1,7 @@
 # THIS IS A DEFUNCT PROJECT, REPLACED WITH A NEW PROJECT
 
 I'm keeping this repository here for posterity. The new version of this project
-will be called rs3 and may be found here: https://github.com/bwlewis/share
+will be called share and may be found here: https://github.com/bwlewis/share
 
 Please avoid using this and instead use the new share package, this project will no longer be
 maintained or developed by me...
