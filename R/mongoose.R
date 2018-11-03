@@ -57,7 +57,11 @@ mongoose = function(uri, ...)
     {
       curl::handle_setopt(h, .list = list(customrequest = "PUT"))
       data = putfun(args$value)
-      curl::handle_setopt(h, .list=list(post=TRUE, postfieldsize=length(data), postfields=data))
+      dlen = length(data)
+      if(dlen > 2147483647)
+        curl::handle_setopt(h, .list=list(post=TRUE, postfieldsize_large=dlen, postfields=data))
+      else
+        curl::handle_setopt(h, .list=list(post=TRUE, postfieldsize=dlen, postfields=data))
       resp = curl::curl_fetch_memory(url, handle=h)
       if(resp$status_code > 299) stop("HTTP error ", resp$status_code)
       return(gsub(sprintf("%s/", base), "", resp$url))

@@ -1,8 +1,8 @@
 Package: feathercache
 Type: Package
 Title: Simple networked object cache
-Version: 0.0.1
-Date: 2016-04-11
+Version: 0.0.2
+Date: 2018-11-02
 Description: Networked object cache for general R and feather objects.
 Authors@R: c(
     person("B. W.", "Lewis", role=c("aut","cre"), email="blewis@illposed.net")
